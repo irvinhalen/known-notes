@@ -9,6 +9,7 @@
 - [Container Registry](#container-registry)
     - [Configure Function App to work with Container Registry](#configure-function-app-to-work-with-container-registry)
 
+
 ## Static Web Apps
 
 ### [Deploy an application using the Visual Studio Code extension](https://learn.microsoft.com/en-us/azure/static-web-apps/getting-started?tabs=vanilla-javascript)
@@ -69,3 +70,70 @@ swa init
 ```sh
 swa deploy ./build --env production
 ```
+
+
+## Function App
+
+### [Deploy a function through the Visual Studio Code Extension](https://learn.microsoft.com/en-us/azure/azure-functions/create-first-function-vs-code-python)
+
+#### Azure Functions Core Tools
+
+1. Press the F1 key to open the command palette
+2. Search for and select ```Azure Functions: Install or Update Core Tools```
+
+#### Local
+
+1. Choose the Azure icon in the Activity Bar and then in the **Workspace (local)** area, select the + button, choose **Create Function** in the dropdown
+    - When prompted, choose **Create new project**
+![Azure extension icon and plus button from workspace local are emphasized with red borders](notes_images/FA_1.png)
+2. Choose the directory location for your project workspace and choose **Select**
+    - You should either create a new folder or choose an empty folder for the project workspace
+    - Don't choose a project folder that is already part of a workspace
+3. Provide the following information at the prompts:
+
+Prompt | Selection
+-|-
+Select a language | Choose ```Python (Programming Model V2)```
+Select a Python interpreter to create a virtual environment | Choose your preferred Python interpreter (If an option isn't shown, type in the full path to your Python binary)
+Select a template for your project's first function | Choose ```HTTP trigger```
+Name of the function you want to create | Enter a name for your function
+Authorization level | Choose ```ANONYMOUS```, which lets anyone call your function endpoint
+Select how you would like to open your project | Choose ```Open in current window```
+
+4. Open the local.settings.json project file and verify that the ```AzureWebJobsFeatureFlags``` setting has a value of ```EnableWorkerIndexing```
+5. In the local.settings.json file, update the ```AzureWebJobsStorage``` setting as in the following example
+```JSON
+"AzureWebJobsStorage": "UseDevelopmentStorage=true"
+```
+
+#### Start the Emulator
+
+1. In Visual Studio Code, press the F1 key to open the command palette. In the command palette, search for and select ```Azurite: Start```
+2. Check the bottom bar and verify that Azurite emulation services are running, and if so, you can now run your function locally
+
+#### Run the function locally
+
+1. To start the function locally, press the F5 key or the Run and Debug icon in the left-hand side Activity bar
+2. With the Terminal panel focused, press Ctrl + C to stop Core Tools and disconnect the debugger
+
+#### Deployment
+
+1. If you aren't already signed in, choose the Azure icon in the Activity bar, and then in the Resources area, choose **Sign in to Azure...**
+![Azure extension icon and sign in to Azure from resources remote are emphasized with red borders](notes_images/FA_2.png)
+2. Choose the Azure icon in the activity bar, and then in the **Resources** area, select the + icon and choose the **Create Function App in Azure** option
+3. Provide the following information at the prompts:
+
+Prompt | Selection
+-|-
+Select subscription | Choose the subscription to use, you won't see this prompt when you have only one subscription visible under **Resources**
+Enter a globally unique name for the function app | Type a name that is valid in a URL path, the name you type is validated to make sure that it's unique in Azure Functions
+Select a runtime stack | Choose the language version on which you've been running locally
+Select a location for new resources | Choose a region nearest to the client
+
+4. Go to the Azure portal and open your Azure Storage Account, select Access keys, and click on Show
+![Access keys and show button from Azure portal are emphasized with red borders](notes_images/FA_3.png)
+5. In the Azure portal, open your Function App, select Environment variables, select AzureWebJobsStorage, enter the connection string in the Value input field, and click on Apply
+![Environment variables, AzureWebJobsStorage, value, and apply button from Azure portal are emphasized with red borders](notes_images/FA_4.png)
+6. In the **Resources** area of the Azure activity, locate the function app resource, right-click the resource, and select **Deploy to function app...**
+![Location of deploy to function app](notes_images/FA_5.png)
+7. When prompted about overwriting previous deployments, select **Deploy** to deploy your function code to the new function app resource
