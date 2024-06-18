@@ -137,3 +137,86 @@ Select a location for new resources | Choose a region nearest to the client
 6. In the **Resources** area of the Azure activity, locate the function app resource, right-click the resource, and select **Deploy to function app...**
 ![Location of deploy to function app](notes_images/FA_5.png)
 7. When prompted about overwriting previous deployments, select **Deploy** to deploy your function code to the new function app resource
+
+
+## Container Registry
+
+### Configure Function App to work with Container Registry
+
+- As far as I could tell I could not find an exact Azure article for this situation but [this article](https://learn.microsoft.com/en-us/azure/azure-functions/functions-deploy-container?tabs=acr%2Cbash%2Cazure-cli&pivots=programming-language-python) was used as the main basis.
+
+#### Prerequisites
+
+- Dockerhub account
+- Azure CLI
+
+#### Configuration
+
+The Function App must be using an App Service plan of basic or higher, this will not work with an App Service plan of free
+
+1. Create an App Service Plan by running the command
+	- Replace <RESOURCE_GROUP_NAME> with your Resource Group
+	- Replace <APP_SERVICE_PLAN_NAME> with the App Service plan name of your choice
+	- Replace <RESOURCE_LOCATION> with the location closest to the client, e.g., "eastasia"
+```sh
+az functionapp plan create --resource-group <RESOURCE_GROUP_NAME> --name <APP_SERVICE_PLAN_NAME> --location <RESOURCE_LOCATION> --number-of-workers 1 --sku B1 --is-linux
+```
+2. Create a Function App by running the command
+	- Replace <FUNCTION_APP_NAME> with the Function App name of your choice
+	- Replace <RUNTIME_STACK> with the runtime stack of your choice
+```sh
+az functionapp create --name <FUNCTION_APP_NAME> --storage-account <STORAGE_ACCOUNT_NAME> --resource-group <RESOURCE_GROUP_NAME> --plan <APP_SERVICE_PLAN_NAME> --runtime <RUNTIME_STACK>
+```
+
+#### Connection
+
+1. On the portal, create an resource called Azure Container Registry
+2. On your local function app type this command
+	- The command creates the Dockerfile on existing Azure Function App
+```sh
+func init --docker-only
+```
+3. Build the image by running the command
+	- Replace <DOCKER_ID> with your Docker ID from Dockerhub
+	- Replace <IMAGE_NAME> with the image name of your choice
+	- Replace <VERSION_NUMBER> with the version number, e.g., "v1.0.0"
+```sh
+docker build --tag <DOCKER_ID>/<IMAGE_NAME>:<VERSION_NUMBER> .
+```
+4. Test locally by running the command
+```sh
+docker run -p 8080:80 -it <DOCKER_ID>/<IMAGE_NAME>:<TAG>
+```
+5. Log in your Azure account by running the command
+	- Replace <CONTAINER_REGISTRY_NAME> with the name of your Container Registry
+```sh
+az acr login --name <CONTAINER_REGISTRY_NAME>
+```
+6. Tag the image by running the command
+	- Replace <LOGIN_SERVER> with the Login Server found in your Container Registry access keys
+```sh
+docker tag <DOCKER_ID>/<IMAGE_NAME>:<VERSION_NUMBER> <LOGIN_SERVER>/<IMAGE_NAME>:<VERSION_NUMBER>
+```
+7. Push to the registry by running the command
+```sh
+docker push <LOGIN_SERVER>/<IMAGE_NAME>:<VERSION_NUMBER>
+```
+8. Use the following command to enable the built-in admin account so that Functions can connect to the registry with a username and password
+```sh
+az acr update -n <CONTAINER_REGISTRY_NAME> --admin-enabled true
+```
+9. On your Function App, head to environment variables and add the variables accordingly
+    - The values can be found in the access keys for the Container Registry
+    ![Access keys from Azure portal are emphasized with a red border](notes_images/CR_1.png)
+
+Variable | Value
+-|-
+DOCKER_CUSTOM_IMAGE_NAME | <LOGIN_SERVER><IMAGE_NAME>:<VERSION_NUMBER>
+DOCKER_REGISTRY_SERVER_URL | <LOGIN_SERVER>
+DOCKER_REGISTRY_SERVER_USERNAME | <REGISTRY_USERNAME>
+DOCKER_REGISTRY_SERVER_PASSWORD | <REGISTRY_PASSWORD>
+
+- Note: When you make changes to your functions code project or need to update to the latest base image, you need to rebuild the container locally and republish the updated image to your chosen container registry. The following command rebuilds the image from the root folder with an updated version number and pushes it to your registry
+```sh
+az acr build --registry <CONTAINER_REGISTRY_NAME> --image <LOGIN_SERVER>/azurefunctionsimage:v1.0.1 .
+```
