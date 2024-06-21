@@ -141,7 +141,7 @@ Select a location for new resources | Choose a region nearest to the client
 
 ## Container Registry
 
-### Configure Function App to work with Container Registry
+### Configure Function App to connect with Container Registry
 
 - As far as I could tell I could not find an exact Azure article for this situation but [this article](https://learn.microsoft.com/en-us/azure/azure-functions/functions-deploy-container?tabs=acr%2Cbash%2Cazure-cli&pivots=programming-language-python) was used as the main basis.
 
@@ -164,6 +164,7 @@ az functionapp plan create --resource-group <RESOURCE_GROUP_NAME> --name <APP_SE
 2. Create a Function App by running the command
 	- Replace <FUNCTION_APP_NAME> with the Function App name of your choice
 	- Replace <RUNTIME_STACK> with the runtime stack of your choice
+    - If you want to specify the runtime version add the flag ```--runtime-version``` followed by the version number
 ```sh
 az functionapp create --name <FUNCTION_APP_NAME> --storage-account <STORAGE_ACCOUNT_NAME> --resource-group <RESOURCE_GROUP_NAME> --plan <APP_SERVICE_PLAN_NAME> --runtime <RUNTIME_STACK>
 ```
@@ -185,7 +186,7 @@ docker build --tag <DOCKER_ID>/<IMAGE_NAME>:<VERSION_NUMBER> .
 ```
 4. Test locally by running the command
 ```sh
-docker run -p 8080:80 -it <DOCKER_ID>/<IMAGE_NAME>:<TAG>
+docker run -p 8080:80 -it <DOCKER_ID>/<IMAGE_NAME>:<VERSION_NUMBER>
 ```
 5. Log in your Azure account by running the command
 	- Replace <CONTAINER_REGISTRY_NAME> with the name of your Container Registry
@@ -211,8 +212,8 @@ az acr update -n <CONTAINER_REGISTRY_NAME> --admin-enabled true
 
 Variable | Value
 -|-
-DOCKER_CUSTOM_IMAGE_NAME | <LOGIN_SERVER><IMAGE_NAME>:<VERSION_NUMBER>
-DOCKER_REGISTRY_SERVER_URL | <LOGIN_SERVER>
+DOCKER_CUSTOM_IMAGE_NAME | <LOGIN_SERVER>/<IMAGE_NAME>:<VERSION_NUMBER>
+DOCKER_REGISTRY_SERVER_URL | https://<LOGIN_SERVER>
 DOCKER_REGISTRY_SERVER_USERNAME | <REGISTRY_USERNAME>
 DOCKER_REGISTRY_SERVER_PASSWORD | <REGISTRY_PASSWORD>
 
