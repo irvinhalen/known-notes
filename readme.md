@@ -1,7 +1,7 @@
 # known-notes
 
 Welcome to known-notes!\
-This is where I keep the notes that don't really fit the vibe of 🍆 Tips & Tricks 🎃 aka 💣 T&T 💥.
+This is where I keep the notes that don't really fit the vibe of 🍆 Tips 'n' Tricks 🎃 aka 💣 TNT 💥.
 
 ### covered-content
 
