@@ -14,3 +14,4 @@ This is where I keep the notes that don't really fit the vibe of 🍆 Tips 'n' T
         - [Deployment using the Visual Code extension](./Azure_Services/Azure_Services.md#deploy-a-function-through-the-visual-studio-code-extension)
     - [Container Registry](./Azure_Services/Azure_Services.md#container-registry)
         - [Configure Function App to work with Container Registry](./Azure_Services/Azure_Services.md#configure-function-app-to-work-with-container-registry)
+    - [AI Studio](./Azure_Services.md#ai-studio)
