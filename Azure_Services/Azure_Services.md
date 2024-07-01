@@ -8,6 +8,7 @@
     - [Deployment using the Visual Code extension](#deploy-a-function-through-the-visual-studio-code-extension)
 - [Container Registry](#container-registry)
     - [Configure Function App to work with Container Registry](#configure-function-app-to-work-with-container-registry)
+- [AI Studio](#ai-studio)
 
 
 ## Static Web Apps
@@ -221,3 +222,6 @@ DOCKER_REGISTRY_SERVER_PASSWORD | <REGISTRY_PASSWORD>
 ```sh
 az acr build --registry <CONTAINER_REGISTRY_NAME> --image <LOGIN_SERVER>/azurefunctionsimage:v1.0.1 .
 ```
+
+
+## AI Studio
