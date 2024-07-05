@@ -19,7 +19,7 @@
 1. Create a repository on GitHub
     - The repository you create in this step should include at least a single *index.html* file
 2. Clone the repository
-    - Replace ```<YOUR_GITHUB_ACCOUNT_NAME>``` with your GitHub username
+    - Replace `<YOUR_GITHUB_ACCOUNT_NAME>` with your GitHub username
 ```sh
 git clone https://github.com/<YOUR_GITHUB_ACCOUNT_NAME>/my-first-static-web-app.git
 ```
@@ -29,7 +29,7 @@ git clone https://github.com/<YOUR_GITHUB_ACCOUNT_NAME>/my-first-static-web-app.
 ##### Install Azure Static Web Apps extension
 
 1. Select View > Extensions
-2. In the Search Extensions in Marketplace, type ```Azure Static Web Apps```
+2. In the Search Extensions in Marketplace, type `Azure Static Web Apps`
 3. Select Install for Azure Static Web Apps
 
 ##### Create a static web app
@@ -38,8 +38,8 @@ git clone https://github.com/<YOUR_GITHUB_ACCOUNT_NAME>/my-first-static-web-app.
 ![Azure extension icon](notes_images/SWA_1.png)
     - If you are not already authenticated in Azure and GitHub, the extension prompts you to sign in to both services during the creation process
 2. Press the F1 key to open the Visual Studio Code command palette
-3. Enter ```Create static web app``` in the command box
-4. Select ```Azure Static Web Apps: Create static web app...```
+3. Enter `Create static web app` in the command box
+4. Select `Azure Static Web Apps: Create static web app...`
 5. Select your Azure subscription
 6. Enter your application name
 7. Choose a region nearest to the client
@@ -48,7 +48,7 @@ git clone https://github.com/<YOUR_GITHUB_ACCOUNT_NAME>/my-first-static-web-app.
 Setting | Value
 -|-
 Framework | Select **Custom**
-Location of application code | Enter ```\```
+Location of application code | Enter `\`
 Build location | Leave blank
 
 ### [Deploy an application with Azure portal and Azure DevOps](https://learn.microsoft.com/en-us/azure/static-web-apps/get-started-portal?pivots=azure-devops&tabs=vanilla-javascript)
@@ -79,7 +79,7 @@ swa deploy ./build --env production
 #### Azure Functions Core Tools
 
 1. Press the F1 key to open the command palette
-2. Search for and select ```Azure Functions: Install or Update Core Tools```
+2. Search for and select `Azure Functions: Install or Update Core Tools`
 
 #### Local
 
@@ -93,22 +93,22 @@ swa deploy ./build --env production
 
 Prompt | Selection
 -|-
-Select a language | Choose ```Python (Programming Model V2)```
+Select a language | Choose `Python (Programming Model V2)`
 Select a Python interpreter to create a virtual environment | Choose your preferred Python interpreter (If an option isn't shown, type in the full path to your Python binary)
-Select a template for your project's first function | Choose ```HTTP trigger```
+Select a template for your project's first function | Choose `HTTP trigger`
 Name of the function you want to create | Enter a name for your function
-Authorization level | Choose ```ANONYMOUS```, which lets anyone call your function endpoint
-Select how you would like to open your project | Choose ```Open in current window```
+Authorization level | Choose `ANONYMOUS`, which lets anyone call your function endpoint
+Select how you would like to open your project | Choose `Open in current window`
 
-4. Open the local.settings.json project file and verify that the ```AzureWebJobsFeatureFlags``` setting has a value of ```EnableWorkerIndexing```
-5. In the local.settings.json file, update the ```AzureWebJobsStorage``` setting as in the following example
+4. Open the local.settings.json project file and verify that the `AzureWebJobsFeatureFlags` setting has a value of `EnableWorkerIndexing`
+5. In the local.settings.json file, update the `AzureWebJobsStorage` setting as in the following example
 ```JSON
 "AzureWebJobsStorage": "UseDevelopmentStorage=true"
 ```
 
 #### Start the Emulator
 
-1. In Visual Studio Code, press the F1 key to open the command palette. In the command palette, search for and select ```Azurite: Start```
+1. In Visual Studio Code, press the F1 key to open the command palette. In the command palette, search for and select `Azurite: Start`
 2. Check the bottom bar and verify that Azurite emulation services are running, and if so, you can now run your function locally
 
 #### Run the function locally
@@ -164,7 +164,7 @@ az functionapp plan create --resource-group <RESOURCE_GROUP_NAME> --name <APP_SE
 2. Create a Function App by running the command
 	- Replace <FUNCTION_APP_NAME> with the Function App name of your choice
 	- Replace <RUNTIME_STACK> with the runtime stack of your choice
-    - If you want to specify the runtime version add the flag ```--runtime-version``` followed by the version number
+    - If you want to specify the runtime version add the flag `--runtime-version` followed by the version number
 ```sh
 az functionapp create --name <FUNCTION_APP_NAME> --storage-account <STORAGE_ACCOUNT_NAME> --resource-group <RESOURCE_GROUP_NAME> --plan <APP_SERVICE_PLAN_NAME> --runtime <RUNTIME_STACK>
 ```
