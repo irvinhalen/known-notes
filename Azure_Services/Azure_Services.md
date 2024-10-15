@@ -45,11 +45,11 @@ git clone https://github.com/<YOUR_GITHUB_ACCOUNT_NAME>/my-first-static-web-app.
 7. Choose a region nearest to the client
 8. Enter the settings values that match your application:
 
-Setting | Value
--|-
-Framework | Select **Custom**
-Location of application code | Enter `\`
-Build location | Leave blank
+| Setting                      | Value             |
+|------------------------------|-------------------|
+| Framework                    | Select **Custom** |
+| Location of application code | Enter `\`         |
+| Build location               | Leave blank       |
 
 ### [Deploy an application with Azure portal and Azure DevOps](https://learn.microsoft.com/en-us/azure/static-web-apps/get-started-portal?pivots=azure-devops&tabs=vanilla-javascript)
 
@@ -91,14 +91,14 @@ swa deploy ./build --env production
     - Don't choose a project folder that is already part of a workspace
 3. Provide the following information at the prompts:
 
-Prompt | Selection
--|-
-Select a language | Choose `Python (Programming Model V2)`
-Select a Python interpreter to create a virtual environment | Choose your preferred Python interpreter (If an option isn't shown, type in the full path to your Python binary)
-Select a template for your project's first function | Choose `HTTP trigger`
-Name of the function you want to create | Enter a name for your function
-Authorization level | Choose `ANONYMOUS`, which lets anyone call your function endpoint
-Select how you would like to open your project | Choose `Open in current window`
+| Prompt                                                      | Selection                                                                                                        |
+|-------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------|
+| Select a language                                           | Choose `Python (Programming Model V2)`                                                                           |
+| Select a Python interpreter to create a virtual environment | Choose your preferred Python interpreter (If an option isn't shown, type in the full path to your Python binary) |
+| Select a template for your project's first function         | Choose `HTTP trigger`                                                                                            |
+| Name of the function you want to create                     | Enter a name for your function                                                                                   |
+| Authorization level                                         | Choose `ANONYMOUS`, which lets anyone call your function endpoint                                                |
+| Select how you would like to open your project              | Choose `Open in current window`                                                                                  |
 
 4. Open the local.settings.json project file and verify that the `AzureWebJobsFeatureFlags` setting has a value of `EnableWorkerIndexing`
 5. In the local.settings.json file, update the `AzureWebJobsStorage` setting as in the following example
@@ -123,12 +123,12 @@ Select how you would like to open your project | Choose `Open in current window`
 2. Choose the Azure icon in the activity bar, and then in the **Resources** area, select the + icon and choose the **Create Function App in Azure** option
 3. Provide the following information at the prompts:
 
-Prompt | Selection
--|-
-Select subscription | Choose the subscription to use, you won't see this prompt when you have only one subscription visible under **Resources**
-Enter a globally unique name for the function app | Type a name that is valid in a URL path, the name you type is validated to make sure that it's unique in Azure Functions
-Select a runtime stack | Choose the language version on which you've been running locally
-Select a location for new resources | Choose a region nearest to the client
+| Prompt                                            | Selection                                                                                                                 |
+|---------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------|
+| Select subscription                               | Choose the subscription to use, you won't see this prompt when you have only one subscription visible under **Resources** |
+| Enter a globally unique name for the function app | Type a name that is valid in a URL path, the name you type is validated to make sure that it's unique in Azure Functions  |
+| Select a runtime stack                            | Choose the language version on which you've been running locally                                                          |
+| Select a location for new resources               | Choose a region nearest to the client                                                                                     |
 
 4. Go to the Azure portal and open your Azure Storage Account, select Access keys, and click on Show
 ![Access keys and show button from Azure portal are emphasized with red borders](notes_images/FA_3.png)
@@ -210,12 +210,12 @@ az acr update -n <CONTAINER_REGISTRY_NAME> --admin-enabled true
     - The values can be found in the access keys for the Container Registry
     ![Access keys from Azure portal are emphasized with a red border](notes_images/CR_1.png)
 
-Variable | Value
--|-
-DOCKER_CUSTOM_IMAGE_NAME | <LOGIN_SERVER>/<IMAGE_NAME>:<VERSION_NUMBER>
-DOCKER_REGISTRY_SERVER_URL | https://<LOGIN_SERVER>
-DOCKER_REGISTRY_SERVER_USERNAME | <REGISTRY_USERNAME>
-DOCKER_REGISTRY_SERVER_PASSWORD | <REGISTRY_PASSWORD>
+| Variable                        | Value                                        |
+|---------------------------------|----------------------------------------------|
+| DOCKER_CUSTOM_IMAGE_NAME        | <LOGIN_SERVER>/<IMAGE_NAME>:<VERSION_NUMBER> |
+| DOCKER_REGISTRY_SERVER_URL      | https://<LOGIN_SERVER>                       |
+| DOCKER_REGISTRY_SERVER_USERNAME | <REGISTRY_USERNAME>                          |
+| DOCKER_REGISTRY_SERVER_PASSWORD | <REGISTRY_PASSWORD>                          |
 
 - Note: When you make changes to your functions code project or need to update to the latest base image, you need to rebuild the container locally and republish the updated image to your chosen container registry. The following command rebuilds the image from the root folder with an updated version number and pushes it to your registry
 ```sh
