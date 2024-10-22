@@ -6,6 +6,7 @@
     - [Deployment with SWA CLI](#deploy-an-application-with-swa-cli)
 - [Function App](#function-app)
     - [Deployment using the Visual Code extension](#deploy-a-function-through-the-visual-studio-code-extension)
+    - Authorization
 - [Container Registry](#container-registry)
     - [Configure Function App to connect with Container Registry](#configure-function-app-to-connect-with-container-registry)
 
