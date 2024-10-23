@@ -6,7 +6,7 @@
     - [Deployment with SWA CLI](#deploy-an-application-with-swa-cli)
 - [Function App](#function-app)
     - [Deployment using the Visual Code extension](#deploy-a-function-through-the-visual-studio-code-extension)
-    - Authorization
+    - [Authorization using access keys](#authorization-using-access-keys)
 - [Container Registry](#container-registry)
     - [Configure Function App to connect with Container Registry](#configure-function-app-to-connect-with-container-registry)
 
@@ -138,6 +138,8 @@ swa deploy ./build --env production
 6. In the **Resources** area of the Azure activity, locate the function app resource, right-click the resource, and select **Deploy to function app...**
 ![Location of deploy to function app](notes_images/FA_5.png)
 7. When prompted about overwriting previous deployments, select **Deploy** to deploy your function code to the new function app resource
+
+### Authorization using access keys
 
 
 ## Container Registry
