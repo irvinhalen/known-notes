@@ -139,7 +139,7 @@ swa deploy ./build --env production
 ![Location of deploy to function app](notes_images/FA_5.png)
 7. When prompted about overwriting previous deployments, select **Deploy** to deploy your function code to the new function app resource
 
-### Authorization using access keys
+### [Authorization using access keys](https://learn.microsoft.com/en-us/azure/azure-functions/function-keys-how-to?tabs=azure-portal)
 
 
 ## Container Registry
