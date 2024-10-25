@@ -141,6 +141,34 @@ swa deploy ./build --env production
 
 ### [Authorization using access keys](https://learn.microsoft.com/en-us/azure/azure-functions/function-keys-how-to?tabs=azure-portal)
 
+1. In the Function App code, set the authorization level from `ANONYMOUS` to `FUNCTION`
+```py
+app = func.FunctionApp(http_auth_level=func.AuthLevel.FUNCTION)
+```
+2. Navigate to the access keys section of the Function App to generate and retrieve the access keys on the Azure Portal
+![Emphasized with a red border is the access keys section of the Function App](notes_images/FA_6.png)
+3. The access key must be included on the URL or on the request header when calling the FUNCTION level function.
+
+    | Request Location | Field           | Value        |
+    |------------------|-----------------|--------------|
+    | URL              | code            | `access key` |
+    | header           | x-functions-key | `access key` |
+
+    - URL example:
+    ```
+    https://test-funcapp.azurewebsites.net/api/test?code=test-key123!
+    ```
+
+    - header example:
+    ```js
+    $.ajax({
+    data: JSON.stringify(inputData),
+    url: "https://test-funcapp.azurewebsites.net/api/test",
+    headers: {'x-functions-key': 'test-key123!'},
+    type: "POST",
+    })
+    ```
+
 
 ## Container Registry
 
