@@ -1,3 +1,1 @@
 # Batch
-
-<!-- About Batch Files -->
