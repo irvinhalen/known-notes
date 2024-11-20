@@ -16,3 +16,6 @@ This is where I keep the notes that don't really fit the vibe of 🍆 Tips 'n' T
         - [Configure Function App to work with Container Registry](./Azure_Services/Azure_Services.md#configure-function-app-to-work-with-container-registry)
 - **Commands**
     - [Windows](./Commands/Windows.md#commands)
+- **Scripts**
+    - [Batch](./Scripts/Batch.md#batch)
+    - [Bash](./Scripts/Bash.md#bash)
